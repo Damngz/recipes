@@ -29,7 +29,8 @@
           <a href="#" class="text-sm/6 font-semibold text-gray-900">Nosotros</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" class="text-sm/6 font-semibold text-gray-900">Iniciar Sesión<span aria-hidden="true">&nbsp; &rarr;</span></a>
+          <a href="/login" class="text-sm/6 font-semibold text-gray-900" sec:authorize="!isAuthenticated()">Iniciar Sesión<span aria-hidden="true">&nbsp; &rarr;</span></a>
+          <a href="/login?logout" class="text-sm/6 font-semibold text-gray-900 hover:text-rose-600" sec:authorize="isAuthenticated()">Cerrar Sesión</a>
         </div>
       </nav>
       <div class="lg:hidden" role="dialog" aria-modal="true">
