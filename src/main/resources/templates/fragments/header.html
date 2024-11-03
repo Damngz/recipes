@@ -4,6 +4,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const loginLink = document.getElementById("login-link");
+        const logoutLink = document.getElementById("logout-link");
+
+        if (isAuthenticated()) {
+          loginLink.style.display = "none";
+          logoutLink.style.display = "block";
+        } else {
+          loginLink.style.display = "block";
+          logoutLink.style.display = "none";
+        }
+      });
+
+      function logout() {
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+      }
+    </script>
   </head>
 
   <body>
