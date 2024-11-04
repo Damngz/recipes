@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" class="h-full bg-white"> 
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${recipe.title}"></title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main>
+      <div class="bg-white">
+        <div class="pt-6">
+          <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:px-8">
+            <img th:src="${recipe.imageUrl}" alt="recipe image" />
+          </div>
+
+          <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+            <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+              <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl" th:text="${recipe.title}"></h1>
+            </div>
+
+            <div class="flex flex-col mt-4 lg:row-span-3 lg:mt-0 rounded-3xl p-4 gap-4 lg:gap-6">
+              <h1 class="text-center text-3xl mb-8">Resumen</h1>
+              <div class="flex gap-2">
+                <h2 class="font-normal text-gray-600">- Tiempo preparación: </h2>
+                <h2 class="font-bold" th:text="${recipe.time} + ' min'"></h2>
+              </div>
+              <div class="flex gap-2">
+                <h2 class="font-normal text-gray-600">- Comensales: </h2>
+                <h2 class="font-bold" th:text="${recipe.diners}"></h2>
+              </div>
+              <div class="flex gap-2">
+                <h2 class="font-normal text-gray-600">- Dificultad: </h2>
+                <h2 class="font-bold" th:text="${recipe.difficulty}">7</h2>
+              </div>
+              <div class="flex gap-2">
+                <h2 class="font-normal text-gray-600">- País: </h2>
+                <h2 class="font-bold" th:text="${recipe.country}"></h2>
+              </div>
+            </div>
+
+            <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+              <div>
+                <div class="space-y-6">
+                  <p class="text-base text-gray-900" th:utext="${recipe.description}"></p>
+                </div>
+              </div>
+
+              <div class="mt-10">
+                <h3 class="text-sm font-medium text-gray-900">Ingredientes</h3>
+
+                <div class="mt-4">
+                  <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+                    <li th:each="ingredient : ${#strings.arraySplit(recipe.ingredients, ';')}" 
+                        th:text="${ingredient}" 
+                        class="text-gray-600">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-10">
+                <h1 class="font-bold">Elaboración</h1>
+                <div class="space-y-6 mt-4">
+                  <p class="text-gray-600" th:utext="${recipe.elaboration}"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </body>
+</html>

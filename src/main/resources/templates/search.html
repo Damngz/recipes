@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"> 
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" class="h-full bg-white"> 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   </head>
-
   <body>
     <div th:replace="~{fragments/header :: header}"></div>
-
+    
     <main>
       <div class="bg-white py-8 lg:py-16">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="flex flex-col mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto max-w-2xl lg:mx-0">
-            <h2 class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Recetas</h2>
-            <p class="mt-2 text-lg/8 text-gray-600">Las recetas más populares del momento.</p>
+            <h2 class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Buscar</h2>
+            <p class="mt-2 text-lg/8 text-gray-600">Busca las recetas que harán tu día más sabroso.</p>
+          </div>
+          <div class="pt-10">
+            <div class="flex items-center">
+              <form action="#" th:action="@{/buscar}" method="get" class="w-full">
+                <input type="text" name="query" placeholder="Buscar recetas..." th:value="${query}" class="flex-grow bg-white border border-[1px] border-slate-900 ring-slate-900 rounded-l-md p-2 text-bg-slate w-[260px] lg:w-[900px]" />
+                <button type="submit" class="bg-slate-900 text-white border border-slate-900 rounded-r-md px-4 py-2 transition duration-300 w-[100px] lg:w-[200px]">Buscar</button>
+              </form>
+            </div>
           </div>
           <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             <div th:each="recipe : ${recipes}">
