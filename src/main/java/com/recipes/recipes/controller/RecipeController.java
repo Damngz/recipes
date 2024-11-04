@@ -3,29 +3,19 @@ package com.recipes.recipes.controller;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.recipes.recipes.model.Recipe;
 import com.recipes.recipes.security.TokenStore;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
-
 
 @Controller
-public class HomeController {
+@RequestMapping("/recetas")
+public class RecipeController {
   private TokenStore tokenStore;
-
-  public HomeController(TokenStore tokenStore) {
-    super();
-    this.tokenStore = tokenStore;
-  }
 
   List<Recipe> recipes = Arrays.asList(
     new Recipe((long) 1, "Ragout de ternera", "https://www.cocinatis.com/archivos/202405/ragout-de-ternera-749x388x80xX.jpg", 120, 7, 2, "1 kilo decarne de ternera para guiso;500ml de agua; 250ml de vino tinto;100gr de tomate frito;200gr de champiñones;1 cebolla;3 zanahorias;3 dientes de ajo;1 hoja de laurel;4 cucharadas de aceite de oliva virgen extra;pimienta negra molida; sal", "Si estás buscando un plato de cuchara que se cocine lentamente, sin prisas, y que ofrezca un sabor profundo y reconfortante, no busques más: el ragout de ternera es exactamente lo que necesitas.\n El ragout es un tipo de rico estofado francés hecho con carne y verduras. Se cocina a fuego lento con vino tinto y hierbas aromáticas, para hacer un plato abundante y lleno de sabor. Hay infinitas variaciones que puedes hacer, con carne, sin ella, pescado, pollo, y puedes usar las verduras o hierbas aromáticas que prefieras, ¡o las que estén en temporada!\n El ragout de ternera es un plato fantástico para hacer cuando el clima comienza a volverse frío. Es un delicioso plato que puedes adaptar al gusto de tu familia y es una excelente receta que puedes preparar con anticipación y recalentar cuando te apetezca.", "Para preparar un delicioso ragout de ternera con carne tierna y jugosa, comienza sazonando con sal y pimienta recién molida 1 kg de carne de ternera para guisar, cortada en trozos del tamaño de un bocado. Esto asegurará una cocción uniforme y una experiencia más cómoda al comer.\n Ahora, en una cazuela, calienta 4 cucharadas de aceite de oliva virgen extra. Cuando el aceite esté caliente, añade los trozos de ternera. Fríe la carne a fuego alto y remueve constantemente para evitar que se pegue, sellándola adecuadamente. Esto preservará los jugos en el interior y garantizará una carne más jugosa y sabrosa.\n Retira la carne de la cazuela y resérvala mientras preparas el sofrito. Para ello, corta 3 dientes de ajo y una cebolla en trozos muy pequeños para facilitar su caramelización y darle más sabor al sofrito. Aprovecha los jugos y el aceite de la carne para sofreír primero ligeramente el ajo y luego añadir la cebolla. Agrega un poco de sal y cocina a fuego medio hasta que la cebolla comience a estar transparente.\n Pela y corta en trozos de 1 cm de grosor aproximadamente 3 zanahorias, luego agrégalas al sofrito junto con 100 g de tomate frito casero. Remueve bien todos los ingredientes y cocínalos juntos durante 5 minutos.\n Una vez listo el sofrito incorporamos la carne y los jugos que ha soltado junto con 1 hoja de laurel.\n Ahora, vierte 250 ml de vino tinto y 500 ml de agua para cubrir la carne. Añade un poco de sal. Tapa la cazuela y deja que la carne comience a cocinarse a fuego medio durante 30 minutos.\n Transcurridos 30 minutos de cocción, incorpora los champiñones al guiso. Limpia y corta 200 g de champiñones por la mitad, añadiéndolos a la cazuela. Luego, tapa la cazuela dejando una pequeña abertura. Cocina el ragout a fuego lento durante 1 hora y 30 minutos, hasta que la carne esté tierna. Remueve ocasionalmente para garantizar una cocción uniforme de la carne.\n Y solo queda disfrutar de este sabroso guiso. Una buena forma de acompañar el ragout de ternera es con puré de patatas, patatas fritas o arroz blanco, sin olvidar una buena hogaza de pan para sopar en la salsa.", "Francia"),
@@ -36,36 +26,28 @@ public class HomeController {
     new Recipe((long) 6, "Patatas rellenas", "https://www.cocinatis.com/archivos/202405/receta-de-patatas-asadas-1-749x388x80xX.jpg", 80, 3, 4, "4 patatas;1/4 col;1 manzana granny smith;2 zanahorias;2 cucharadas de mayonesa;perejil", "Las patatas rellenas o Jacket potatoes son uno de esos platos que siempre triunfan. Seguro que has ido alguna vez a la feria y has visto una larga cola de gente que está esperando a comprar en un puesto de patatas asadas, y es que es un plato versátil, fácil de comer y que gusta a todo el mundo.\n Un clásico de la cocina inglesa que puedes preparar al horno o envuelto con papel albal en las brasas de un asado. Un plato fácil de preparar y que puede ser una alternativa estupenda si buscas preparar un plato completo y del que podrás disfrutar con tus ingredientes favoritos.\n Sigue los pasos de nuestra receta y aprende a cómo hacer tus propias patatas rellenas al horno en casa, nosotros las rellenamos con una ensaladilla casera, pero podrás disfrutar de una patata rellena con los ingredientes que más te gusten. ¡No te lo puedes perder!", "Darás comienzo a la receta de patatas rellenas al horno asando las patatas, para ello envuelve las patatas en papel de aluminio y ponlas en la bandeja del horno durante 1 hora más o menos a 220ºC. Es importante que las pinches antes con ayuda de un palillo o un tenedor. Puede que necesites más de una hora, depende del horno y de la patata.\n Comprueba la resistencia de la patata cuando creas que esté lista con ayuda de un cuchillo de untar.\n Para preparar el relleno: pica la col, las zanahorias y la manzana. Pon todo en un bol, añade la mahonesa y mezcla bien.\n Saca las patatas del horno y deja enfriar unos minutos. Hazles un corte en la mitad (sin llegar a partirlas en dos).\n Rellena la patata con la ensalada de col. Espolvorea con perejil picado para decorar. Sirve las patatas rellenas mientras estén calientes y disfrútalas a tu gusto.", "Inglaterra")
   );
 
-  @GetMapping("/")
-  public String root(Model model) {
-    model.addAttribute("recipes", recipes);
-    return "Home";
+  public RecipeController(TokenStore tokenStore) {
+    super();
+    this.tokenStore = tokenStore;
   }
 
-  @GetMapping("/recetas")
-  public String home(Model model) {
-    model.addAttribute("recipes", recipes);
-    return "Home";
+  @GetMapping("/{recipeId}")
+  public String getRecipe(@PathVariable String recipeId, Model model) {
+    Recipe recipe = recipes
+      .stream()
+      .filter(r -> r.getRecipeId().toString().equals(recipeId.toString()))
+      .findFirst()
+      .orElse(null);
+
+    if (recipe != null) {
+        String formattedDescription = recipe.getDescription().replace("\n", "<br /><br />");
+        String formattedElaboration = recipe.getElaboration().replace("\n", "<br /><br />");
+        recipe.setDescription(formattedDescription);
+        recipe.setElaboration(formattedElaboration);
+        model.addAttribute("recipe", recipe);
+        return "recipe";
+    } else {
+        return "error/404";
+    }
   }
-
-  @GetMapping("/greetings")
-  public String getMethodName(@RequestParam(name="name", required=false, defaultValue = "Grupo 14") String name, Model model) {
-    String url = "http://localhost:8081/greetings";
-
-    final var restTemplate = new RestTemplate();
-    String token = tokenStore.getToken();
-
-    HttpHeaders headers = new HttpHeaders();
-    headers.set("Authorization", token);
-
-    HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-
-    UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("name", name);
-
-    ResponseEntity<String> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, String.class);
-
-    model.addAttribute("name", response.getBody());
-    return "Greetings";
-  }
-  
 }
