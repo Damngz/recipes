@@ -39,13 +39,13 @@ public class HomeController {
   @GetMapping("/")
   public String root(Model model) {
     model.addAttribute("recipes", recipes);
-    return "Home";
+    return "home";
   }
 
   @GetMapping("/recetas")
   public String home(Model model) {
     model.addAttribute("recipes", recipes);
-    return "Home";
+    return "home";
   }
 
   @GetMapping("/greetings")
@@ -65,7 +65,7 @@ public class HomeController {
     ResponseEntity<String> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, String.class);
 
     model.addAttribute("name", response.getBody());
-    return "Greetings";
+    return "greetings";
   }
   
 }
