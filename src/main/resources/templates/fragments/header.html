@@ -4,6 +4,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const loginLink = document.getElementById("login-link");
+        const logoutLink = document.getElementById("logout-link");
+
+        if (isAuthenticated()) {
+          loginLink.style.display = "none";
+          logoutLink.style.display = "block";
+        } else {
+          loginLink.style.display = "block";
+          logoutLink.style.display = "none";
+        }
+      });
+
+      function logout() {
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+      }
+    </script>
   </head>
 
   <body>
@@ -29,7 +48,8 @@
           <a href="#" class="text-sm/6 font-semibold text-gray-900">Nosotros</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" class="text-sm/6 font-semibold text-gray-900">Iniciar Sesión<span aria-hidden="true">&nbsp; &rarr;</span></a>
+          <a href="/login" class="text-sm/6 font-semibold text-gray-900" sec:authorize="!isAuthenticated()">Iniciar Sesión<span aria-hidden="true">&nbsp; &rarr;</span></a>
+          <a href="/logout" class="text-sm/6 font-semibold text-gray-900 hover:text-rose-600" sec:authorize="isAuthenticated()">Cerrar Sesión</a>
         </div>
       </nav>
       <div class="lg:hidden" role="dialog" aria-modal="true">
