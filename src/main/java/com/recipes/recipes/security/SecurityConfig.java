@@ -22,11 +22,12 @@ public class SecurityConfig {
     return authenticationManagerBuilder.build();
   }
 
+  @SuppressWarnings("removal")
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
       .authorizeHttpRequests((requests) -> requests
-        .requestMatchers("/", "/recetas", "/login", "/**.css", "/**.js").permitAll()
+        .requestMatchers("/", "/recetas", "/login", "/buscar", "/**.css", "/**.js").permitAll()
         .anyRequest().authenticated()
       )
       .formLogin((form) -> form

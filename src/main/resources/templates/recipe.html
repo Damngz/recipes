@@ -67,11 +67,187 @@
                   <p class="text-gray-600" th:utext="${recipe.elaboration}"></p>
                 </div>
               </div>
+              <div class="mt-10">
+                  <h1 class="font-bold text-lg">Video</h1>
+                  <div class="space-y-6 mt-4">
+                      
+                    <iframe th:src="'https://www.youtube.com/embed/' + ${#strings.substring(recipe.videoUrl, recipe.videoUrl.indexOf('v=') + 2)}"
+                        width="560" height="315" frameborder="0" allowfullscreen>
+                    </iframe>
+
+                  </div>
+              </div>
+              <div class="mt-10">
+                <h2 class="font-bold text-lg">Compartir receta</h2>
+                <div class="flex space-x-4 mt-4">
+                    <!-- Botón para compartir en Facebook -->
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={url_de_tu_receta}"
+                       target="_blank" 
+                       class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                      </svg>
+                         Facebook
+                    </a>
+            
+                    <!-- Botón para compartir en Twitter -->
+                    <a href="https://twitter.com/intent/tweet?url={url_de_tu_receta}&text={titulo_de_tu_receta}"
+                       target="_blank" 
+                       class="bg-blue-400 text-white px-4 py-2 rounded-lg hover:bg-blue-500 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2" fill="white">
+                            <path d="M23.43 4.58c-.81.36-1.68.6-2.59.71.93-.56 1.64-1.44 1.97-2.49-.87.51-1.83.88-2.84 1.08-.82-.87-1.99-1.41-3.3-1.41-2.5 0-4.52 2.03-4.52 4.53 0 .35.04.69.12 1.02-3.77-.19-7.11-1.99-9.35-4.73-.39.67-.61 1.45-.61 2.28 0 1.57.8 2.96 2.02 3.77-.74-.02-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.04 3.63 4.46-.38.1-.78.16-1.18.16-.29 0-.57-.03-.86-.08.58 1.81 2.26 3.14 4.25 3.18-1.56 1.22-3.54 1.95-5.68 1.95-1.17 0-2.31-.1-3.43-.3 2.44 1.56 5.34 2.47 8.45 2.47 10.14 0 15.7-8.41 15.7-15.7 0-.24-.01-.48-.02-.72 1.07-.77 2.01-1.74 2.75-2.84z"/>
+                        </svg>
+                        Twitter
+                    </a>
+            
+                    <!-- Botón para compartir en WhatsApp -->
+                    <a href="https://wa.me/?text={titulo_de_tu_receta} {url_de_tu_receta}"
+                       target="_blank" 
+                       class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                      </svg>
+                         WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            
+              <div class="mt-10">
+                <h2 class="font-bold text-lg">Comentarios</h2>
+                <div class="space-y-4 mt-4">
+                    <ul>
+                        <li th:each="comment : ${recipe.comments}" class="bg-gray-100 p-4 rounded-lg shadow-md border">
+                            <p class="text-sm text-gray-600">
+                                <strong class="text-blue-500" th:text="${comment.author}">Autor</strong>
+                            </p>
+                            <p class="text-gray-800 mt-2" th:text="${comment.text}">Comentario</p>
+            
+                            <!-- Valoración con estrellas -->
+                            <div class="flex items-center mt-2">
+                                <span th:each="i : ${#numbers.sequence(1, 5)}" class="text-yellow-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" th:class="${i <= comment.rating} ? 'fill-current' : 'fill-gray-300'">
+                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            
+                <h3 class="font-bold text-md mt-6">Agregar un comentario</h3>
+                <form th:action="@{/recetas/{recipeId}/comments(recipeId=${recipe.recipeId})}" method="post" class="mt-4">
+                    <div>
+                        <label for="author" class="block font-medium">Autor:</label>
+                        <input type="text" id="author" name="author" class="border rounded w-full p-2 mt-1">
+                    </div>
+                    <div class="mt-4">
+                        <label for="text" class="block font-medium">Comentario:</label>
+                        <textarea id="text" name="text" rows="3" class="border rounded w-full p-2 mt-1"></textarea>
+                    </div>
+            
+                    <!-- Formulario de valoración -->
+                    <div class="mt-4">
+                        <label class="block font-medium">Valoración:</label>
+                        <div id="star-rating" class="flex space-x-2">
+                            <input type="radio" id="rating1" name="rating" value="1" class="hidden" />
+                            <label for="rating1" class="cursor-pointer text-yellow-400" data-index="1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </label>
+            
+                            <input type="radio" id="rating2" name="rating" value="2" class="hidden" />
+                            <label for="rating2" class="cursor-pointer text-yellow-400" data-index="2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </label>
+            
+                            <input type="radio" id="rating3" name="rating" value="3" class="hidden" />
+                            <label for="rating3" class="cursor-pointer text-yellow-400" data-index="3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </label>
+            
+                            <input type="radio" id="rating4" name="rating" value="4" class="hidden" />
+                            <label for="rating4" class="cursor-pointer text-yellow-400" data-index="4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </label>
+            
+                            <input type="radio" id="rating5" name="rating" value="5" class="hidden" />
+                            <label for="rating5" class="cursor-pointer text-yellow-400" data-index="5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div class="mt-4">
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Enviar</button>
+                    </div>
+                </form>
+            </div>
+            
+            
+            
             </div>
           </div>
         </div>
       </div>
     </main>
-
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const stars = document.querySelectorAll("#star-rating label");
+          const hiddenInputs = document.querySelectorAll("#star-rating input");
+  
+          stars.forEach(star => {
+              star.addEventListener("mouseover", function() {
+                  const index = star.getAttribute("data-index");
+                  highlightStars(index);
+              });
+  
+              star.addEventListener("mouseout", function() {
+                  const selectedRating = document.querySelector('input[name="rating"]:checked');
+                  const selectedValue = selectedRating ? selectedRating.value : 0;
+                  highlightStars(selectedValue);
+              });
+  
+              star.addEventListener("click", function() {
+                  const selectedIndex = star.getAttribute("data-index");
+                  updateRating(selectedIndex);
+              });
+          });
+  
+          function highlightStars(index) {
+              stars.forEach(star => {
+                  const starIndex = star.getAttribute("data-index");
+                  if (starIndex <= index) {
+                      star.querySelector("svg").classList.add("fill-current");
+                      star.querySelector("svg").classList.remove("fill-gray-300");
+                  } else {
+                      star.querySelector("svg").classList.remove("fill-current");
+                      star.querySelector("svg").classList.add("fill-gray-300");
+                  }
+              });
+          }
+  
+          function updateRating(index) {
+              document.querySelector('input[name="rating"][value="' + index + '"]').checked = true;
+              highlightStars(index);
+          }
+  
+          // Initialize the stars according to the current rating if available
+          const currentRating = document.querySelector('input[name="rating"]:checked');
+          if (currentRating) {
+              highlightStars(currentRating.value);
+          }
+      });
+  </script>
+  
   </body>
 </html>
