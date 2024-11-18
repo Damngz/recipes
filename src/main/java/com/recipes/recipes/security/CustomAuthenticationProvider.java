@@ -40,7 +40,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     try {
       requestBody.put("email", name);
       requestBody.put("password", password);
-      final var responseEntity = restTemplate.postForEntity("http://backend:8081/login", requestBody, String.class);
+      final var responseEntity = restTemplate.postForEntity("http://localhost:8081/login", requestBody, String.class);
 
       if (responseEntity.getStatusCode() != HttpStatus.OK) {
         throw new BadCredentialsException("Invalid credentials");
