@@ -1,5 +1,8 @@
 package com.recipes.recipes.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Recipe {
   private Long recipeId;
   private String title;
@@ -11,8 +14,10 @@ public class Recipe {
   private String description;
   private String elaboration;
   private String country;
+  private String videoUrl;
+  private List<Comment> comments = new ArrayList<>();
   
-  public Recipe(Long recipeId, String title, String imageUrl, int time, int difficulty, int diners, String ingredients, String description, String elaboration, String country) {
+  public Recipe(Long recipeId, String title, String imageUrl, int time, int difficulty, int diners, String ingredients, String description, String elaboration, String country,  String videoUrl ) {
     this.recipeId = recipeId;
     this.title = title;
     this.imageUrl = imageUrl;
@@ -23,6 +28,7 @@ public class Recipe {
     this.description = description;
     this.elaboration = elaboration;
     this.country = country;
+    this.videoUrl = videoUrl;
   }
 
   public void setRecipeId(Long recipeId) {
@@ -103,5 +109,21 @@ public class Recipe {
 
   public String getCountry() {
     return country;
+  }
+
+  public String getVideoUrl() {
+      return videoUrl;
+  }
+
+  public void setVideoUrl(String videoUrl) {
+      this.videoUrl = videoUrl;
+  }
+
+  public List<Comment> getComments() {
+    return comments;
+  }
+
+  public void addComment(Comment comment) {
+      this.comments.add(comment);
   }
 }

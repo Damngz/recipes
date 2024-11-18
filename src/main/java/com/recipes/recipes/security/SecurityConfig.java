@@ -22,6 +22,7 @@ public class SecurityConfig {
     return authenticationManagerBuilder.build();
   }
 
+  @SuppressWarnings("removal")
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
