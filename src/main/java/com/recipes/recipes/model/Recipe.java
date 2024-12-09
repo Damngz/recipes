@@ -112,11 +112,11 @@ public class Recipe {
   }
 
   public String getVideoUrl() {
-      return videoUrl;
+    return videoUrl;
   }
 
   public void setVideoUrl(String videoUrl) {
-      this.videoUrl = videoUrl;
+    this.videoUrl = videoUrl;
   }
 
   public List<Comment> getComments() {
@@ -124,6 +124,6 @@ public class Recipe {
   }
 
   public void addComment(Comment comment) {
-      this.comments.add(comment);
+    this.comments.add(comment);
   }
 }

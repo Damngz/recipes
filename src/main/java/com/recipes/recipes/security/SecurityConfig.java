@@ -22,7 +22,6 @@ public class SecurityConfig {
     return authenticationManagerBuilder.build();
   }
 
-  @SuppressWarnings("removal")
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
@@ -38,6 +37,7 @@ public class SecurityConfig {
       .logout((logout) -> logout
         .deleteCookies("JSESSIONID")
         .invalidateHttpSession(true)
+        .logoutUrl("/logout")
         .logoutSuccessUrl("/")
         .permitAll());
 

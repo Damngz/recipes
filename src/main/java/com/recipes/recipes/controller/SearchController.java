@@ -27,7 +27,6 @@ public class SearchController {
   public String buscarRecetas(@RequestParam(value = "query", required = false) String query, Model model) {
     List<Recipe> recipes = recipeService.getAllRecipes();
 
-    log.info(query);
     if (query != null && !query.trim().isEmpty()) {
       recipes = recipeService.searchRecipes(query);
     }

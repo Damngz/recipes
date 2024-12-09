@@ -7,16 +7,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CommentController {
+	@PostMapping("/add-comment")
+	public String addComment(@RequestParam("username") String username, 
+														@RequestParam("comment") String comment,
+														Model model) {
+		System.out.println("Usuario: " + username);
+		System.out.println("Comentario: " + comment);
 
-    @PostMapping("/add-comment")
-    public String addComment(@RequestParam("username") String username, 
-                              @RequestParam("comment") String comment,
-                              Model model) {
-        // Procesar el comentario
-        System.out.println("Usuario: " + username);
-        System.out.println("Comentario: " + comment);
-
-        // Redirigir o actualizar el modelo si es necesario
-        return "redirect:recipes"; // Cambia "/" por la URL que corresponda a tu página principal
-    }
+		return "redirect:/recipes";
+	}
 }

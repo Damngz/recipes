@@ -43,14 +43,14 @@ public class RecipeController {
       .orElse(null);
 
     if (recipe != null) {
-        String formattedDescription = recipe.getDescription().replace("\n", "<br /><br />");
-        String formattedElaboration = recipe.getElaboration().replace("\n", "<br /><br />");
-        recipe.setDescription(formattedDescription);
-        recipe.setElaboration(formattedElaboration);
-        model.addAttribute("recipe", recipe);
-        return "recipe";
+      String formattedDescription = recipe.getDescription().replace("\n", "<br /><br />");
+      String formattedElaboration = recipe.getElaboration().replace("\n", "<br /><br />");
+      recipe.setDescription(formattedDescription);
+      recipe.setElaboration(formattedElaboration);
+      model.addAttribute("recipe", recipe);
+      return "recipe";
     } else {
-        return "error/404";
+      return "error/404";
     }
   }
   @PostMapping("/{recipeId}/comments")
@@ -59,27 +59,27 @@ public class RecipeController {
                           @RequestParam String text,
                           @RequestParam(required = false) Integer rating,
                           Model model) {
-      if (author == null || author.trim().isEmpty()) {
-        model.addAttribute("error", "El nombre del autor es obligatorio.");
-        return "redirect:/recetas/" + recipeId; 
-      }
-      
-      if (text == null || text.trim().isEmpty()) {
-          model.addAttribute("error", "El comentario no puede estar vacío.");
-          return "redirect:/recetas/" + recipeId; 
-      }
-  
-      if (rating == null || rating < 1 || rating > 5) {
-          model.addAttribute("error", "La calificación debe estar entre 1 y 5.");
-          return "redirect:/recetas/" + recipeId; 
-      }
-      Recipe recipe = recipes.stream()
-                            .filter(r -> r.getRecipeId().equals(recipeId))
-                            .findFirst()
-                            .orElseThrow(() -> new IllegalArgumentException("Receta no encontrada"));
+    if (author == null || author.trim().isEmpty()) {
+      model.addAttribute("error", "El nombre del autor es obligatorio.");
+      return "redirect:/recetas/" + recipeId; 
+    }
+    
+    if (text == null || text.trim().isEmpty()) {
+      model.addAttribute("error", "El comentario no puede estar vacío.");
+      return "redirect:/recetas/" + recipeId; 
+    }
 
-      recipe.addComment(new Comment(author, text, rating));
-      model.addAttribute("recipe", recipe);
-      return "redirect:/recetas/" + recipeId;
+    if (rating == null || rating < 1 || rating > 5) {
+      model.addAttribute("error", "La calificación debe estar entre 1 y 5.");
+      return "redirect:/recetas/" + recipeId; 
+    }
+    Recipe recipe = recipes.stream()
+      .filter(r -> r.getRecipeId().equals(recipeId))
+      .findFirst()
+      .orElseThrow(() -> new IllegalArgumentException("Receta no encontrada"));
+
+    recipe.addComment(new Comment(author, text, rating));
+    model.addAttribute("recipe", recipe);
+    return "redirect:/recetas/" + recipeId;
   }
 }
